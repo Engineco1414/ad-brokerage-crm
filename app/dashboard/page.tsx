@@ -4,7 +4,7 @@ import { useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 
 export default function Dashboard() {
-  const [leads] = useState([
+const [leads, setLeads] = useState([
     {
       name: "John Smith",
       age: 67,
@@ -23,6 +23,11 @@ export default function Dashboard() {
 
   const [currentLead, setCurrentLead] = useState(0);
 const [showAddLead, setShowAddLead] = useState(false);
+  const [newLeadName, setNewLeadName] = useState("");
+const [newLeadPhone, setNewLeadPhone] = useState("");
+const [newLeadEmail, setNewLeadEmail] = useState("");
+const [newLeadAge, setNewLeadAge] = useState("");
+const [newLeadState, setNewLeadState] = useState("");
   return (
     <DashboardLayout>
       <h1 className="text-4xl font-bold mb-8">
@@ -99,33 +104,71 @@ const [showAddLead, setShowAddLead] = useState(false);
   <div className="bg-[#081529] p-4 rounded-xl mb-6">
 
     <input
-      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
-      placeholder="Lead Name"
+  className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+  placeholder="Lead Name"
+  value={newLeadName}
+  onChange={(e) => setNewLeadName(e.target.value)}
+/>
+
+    <input
+  className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+  placeholder="Phone Number"
+  value={newLeadPhone}
+  onChange={(e) => setNewLeadPhone(e.target.value)}
+/>
     />
 
     <input
-      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
-      placeholder="Phone Number"
+  className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+  placeholder="Email Address"
+  value={newLeadEmail}
+  onChange={(e) => setNewLeadEmail(e.target.value)}
+/>
     />
 
     <input
-      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
-      placeholder="Email Address"
-    />
+  className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+  placeholder="Age"
+  value={newLeadAge}
+  onChange={(e) => setNewLeadAge(e.target.value)}
+/>
 
     <input
-      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
-      placeholder="Age"
-    />
+  className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+  placeholder="State"
+  value={newLeadState}
+  onChange={(e) => setNewLeadState(e.target.value)}
+/>
 
-    <input
-      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
-      placeholder="State"
-    />
+    <button
+  className="bg-green-600 px-5 py-3 rounded-xl"
+  onClick={() => {
+    if (!newLeadName) return;
 
-    <button className="bg-green-600 px-5 py-3 rounded-xl">
-      Save Lead
-    </button>
+    setLeads([
+      ...leads,
+      {
+        name: newLeadName,
+        age: Number(newLeadAge) || 0,
+        phone: newLeadPhone,
+        email: newLeadEmail,
+        state: newLeadState,
+      },
+    ]);
+
+    setCurrentLead(leads.length);
+
+    setNewLeadName("");
+    setNewLeadPhone("");
+    setNewLeadEmail("");
+    setNewLeadAge("");
+    setNewLeadState("");
+
+    setShowAddLead(false);
+  }}
+>
+  Save Lead
+</button>
 
   </div>
 
