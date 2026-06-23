@@ -1,6 +1,27 @@
+"use client";
+import { useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 
 export default function Dashboard() {
+const [leads, setLeads] = useState([
+  {
+    name: "John Smith",
+    age: 67,
+    phone: "636-555-1234",
+    email: "johnsmith@email.com",
+    state: "Missouri",
+  },
+
+  {
+    name: "Mary Johnson",
+    age: 59,
+    phone: "314-555-9876",
+    email: "mary@email.com",
+    state: "Illinois",
+  },
+]);
+
+const [currentLead, setCurrentLead] = useState(0);
   return (
     <DashboardLayout>
 
@@ -69,23 +90,23 @@ export default function Dashboard() {
    <div className="space-y-4">
 
   <div>
-    <strong>Name:</strong> John Smith
+   <strong>Name:</strong> {leads[currentLead].name}
   </div>
 
   <div>
-    <strong>Age:</strong> 67
+   <strong>Age:</strong> {leads[currentLead].age}
   </div>
 
   <div>
-    <strong>Phone:</strong> 636-555-1234
+    <strong>Phone:</strong> {leads[currentLead].phone}
   </div>
 
   <div>
-    <strong>Email:</strong> johnsmith@email.com
+    <strong>Email:</strong> {leads[currentLead].email}
   </div>
 
   <div>
-    <strong>State:</strong> Missouri
+   <strong>State:</strong> {leads[currentLead].state}
   </div>
 
 </div>
@@ -105,6 +126,35 @@ export default function Dashboard() {
       </button>
 
     </div>
+    <div className="flex gap-4 mt-4">
+
+  <button
+    className="bg-gray-700 px-6 py-3 rounded-xl"
+    onClick={() =>
+      setCurrentLead(
+        currentLead > 0
+          ? currentLead - 1
+          : leads.length - 1
+      )
+    }
+  >
+    ← Previous Lead
+  </button>
+
+  <button
+    className="bg-yellow-500 text-black px-6 py-3 rounded-xl font-bold"
+    onClick={() =>
+      setCurrentLead(
+        currentLead < leads.length - 1
+          ? currentLead + 1
+          : 0
+      )
+    }
+  >
+    Next Lead →
+  </button>
+
+</div>
 <div className="grid grid-cols-2 gap-3 mt-6">
 
   <button className="bg-purple-600 p-3 rounded-xl">
