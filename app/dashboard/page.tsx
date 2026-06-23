@@ -54,10 +54,11 @@ export default function Dashboard() {
       ...updatedLeads[currentLead],
       status,
     };
+setLeads(updatedLeads);
+};
 
-    setLeads(updatedLeads);
-  };
-    <DashboardLayout>
+return (
+  <DashboardLayout>
       <h1 className="text-4xl font-bold mb-8">
         Dashboard
       </h1>
@@ -78,8 +79,8 @@ export default function Dashboard() {
     <div className="bg-[#0F1F35] rounded-2xl p-5">
   <p className="text-slate-400">Appointments</p>
   <h2 className="text-3xl font-bold text-purple-400">
-    setAppointments(appointments + 1)
-  </h2>
+  {appointmentCount}
+</h2>
 </div>
 
         <div className="bg-[#0F1F35] rounded-2xl p-5">
