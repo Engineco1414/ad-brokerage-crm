@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
-
 export default function Dashboard() {
-const [leads, setLeads] = useState([
+  const [leads, setLeads] = useState([
     {
       name: "John Smith",
       age: 67,
       phone: "636-555-1234",
       email: "johnsmith@email.com",
       state: "Missouri",
+      status: "new",
     },
     {
       name: "Mary Johnson",
@@ -18,17 +18,45 @@ const [leads, setLeads] = useState([
       phone: "314-555-9876",
       email: "mary@email.com",
       state: "Illinois",
+      status: "new",
     },
   ]);
 
   const [currentLead, setCurrentLead] = useState(0);
-const [showAddLead, setShowAddLead] = useState(false);
+  const [showAddLead, setShowAddLead] = useState(false);
+
   const [newLeadName, setNewLeadName] = useState("");
-const [newLeadPhone, setNewLeadPhone] = useState("");
-const [newLeadEmail, setNewLeadEmail] = useState("");
-const [newLeadAge, setNewLeadAge] = useState("");
-const [newLeadState, setNewLeadState] = useState("");
-  return (
+  const [newLeadPhone, setNewLeadPhone] = useState("");
+  const [newLeadEmail, setNewLeadEmail] = useState("");
+  const [newLeadAge, setNewLeadAge] = useState("");
+  const [newLeadState, setNewLeadState] = useState("");
+
+  const appointmentCount = leads.filter(
+    (lead) => lead.status === "appointment"
+  ).length;
+
+  const notInterestedCount = leads.filter(
+    (lead) => lead.status === "notInterested"
+  ).length;
+
+  const dnaCount = leads.filter(
+    (lead) => lead.status === "dna"
+  ).length;
+
+  const dncCount = leads.filter(
+    (lead) => lead.status === "dnc"
+  ).length;
+
+  const updateLeadStatus = (status: string) => {
+    const updatedLeads = [...leads];
+
+    updatedLeads[currentLead] = {
+      ...updatedLeads[currentLead],
+      status,
+    };
+
+    setLeads(updatedLeads);
+  };
     <DashboardLayout>
       <h1 className="text-4xl font-bold mb-8">
         Dashboard
@@ -47,10 +75,12 @@ const [newLeadState, setNewLeadState] = useState("");
           <h2 className="text-3xl font-bold text-green-400">0</h2>
         </div>
 
-        <div className="bg-[#0F1F35] rounded-2xl p-5">
-          <p className="text-slate-400">Appointments</p>
-          <h2 className="text-3xl font-bold text-purple-400">0</h2>
-        </div>
+    <div className="bg-[#0F1F35] rounded-2xl p-5">
+  <p className="text-slate-400">Appointments</p>
+  <h2 className="text-3xl font-bold text-purple-400">
+    {appointmentCount}
+  </h2>
+</div>
 
         <div className="bg-[#0F1F35] rounded-2xl p-5">
           <p className="text-slate-400">Not Interested</p>
@@ -146,17 +176,17 @@ const [newLeadState, setNewLeadState] = useState("");
   onClick={() => {
     if (!newLeadName) return;
 
-    setLeads([
-      ...leads,
-      {
-        name: newLeadName,
-        age: Number(newLeadAge) || 0,
-        phone: newLeadPhone,
-        email: newLeadEmail,
-        state: newLeadState,
-      },
-    ]);
-
+   setLeads([
+  ...leads,
+  {
+    name: newLeadName,
+    age: Number(newLeadAge) || 0,
+    phone: newLeadPhone,
+    email: newLeadEmail,
+    state: newLeadState,
+    status: "new",
+  },
+]);
     setCurrentLead(leads.length);
 
     setNewLeadName("");
@@ -213,8 +243,13 @@ const [newLeadState, setNewLeadState] = useState("");
               Do Not Call
             </button>
 
-          </div>
-
+          </div> 
+          <button
+  className="bg-purple-600 px-6 py-3 rounded-xl mt-4"
+  onClick={() => updateLeadStatus("appointment")}
+>
+  Appointment Set
+</button>
           <div className="flex gap-4 mt-4">
 
             <button
