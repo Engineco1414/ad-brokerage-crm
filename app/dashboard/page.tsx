@@ -110,21 +110,21 @@ const [newLeadState, setNewLeadState] = useState("");
   onChange={(e) => setNewLeadName(e.target.value)}
 />
 
-    <input
+ <input
   className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
   placeholder="Phone Number"
   value={newLeadPhone}
   onChange={(e) => setNewLeadPhone(e.target.value)}
 />
-    />
+  
 
-    <input
+<input
   className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
-  placeholder="Email Address"
-  value={newLeadEmail}
-  onChange={(e) => setNewLeadEmail(e.target.value)}
+  placeholder="Phone Number"
+  value={newLeadPhone}
+  onChange={(e) => setNewLeadPhone(e.target.value)}
 />
-    />
+  
 
     <input
   className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
