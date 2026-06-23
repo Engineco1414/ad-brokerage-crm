@@ -66,25 +66,29 @@ export default function Dashboard() {
 
 </div>
 
-    <div className="space-y-4">
+   <div className="space-y-4">
 
-      <div>
-        <strong>Name:</strong> No Lead Loaded
-      </div>
+  <div>
+    <strong>Name:</strong> John Smith
+  </div>
 
-      <div>
-        <strong>Phone:</strong> ---
-      </div>
+  <div>
+    <strong>Age:</strong> 67
+  </div>
 
-      <div>
-        <strong>Email:</strong> ---
-      </div>
+  <div>
+    <strong>Phone:</strong> 636-555-1234
+  </div>
 
-      <div>
-        <strong>State:</strong> ---
-      </div>
+  <div>
+    <strong>Email:</strong> johnsmith@email.com
+  </div>
 
-    </div>
+  <div>
+    <strong>State:</strong> Missouri
+  </div>
+
+</div>
 
     <div className="flex gap-4 mt-8">
 
@@ -101,7 +105,25 @@ export default function Dashboard() {
       </button>
 
     </div>
+<div className="grid grid-cols-2 gap-3 mt-6">
 
+  <button className="bg-purple-600 p-3 rounded-xl">
+    Appointment Set
+  </button>
+
+  <button className="bg-yellow-600 p-3 rounded-xl">
+    Not Interested
+  </button>
+
+  <button className="bg-orange-600 p-3 rounded-xl">
+    Did Not Answer
+  </button>
+
+  <button className="bg-green-600 p-3 rounded-xl">
+    Add As Client
+  </button>
+
+</div>
   </div>
 
   <div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
