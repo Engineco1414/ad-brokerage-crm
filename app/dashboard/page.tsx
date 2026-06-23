@@ -38,8 +38,9 @@ const [newLeadState, setNewLeadState] = useState("");
 
         <div className="bg-[#0F1F35] rounded-2xl p-5">
           <p className="text-slate-400">Total Leads</p>
-          <h2 className="text-3xl font-bold text-yellow-400">0</h2>
-        </div>
+<h2 className="text-3xl font-bold text-yellow-400">
+  {leads.length} </h2> 
+         </div>
 
         <div className="bg-[#0F1F35] rounded-2xl p-5">
           <p className="text-slate-400">Calls Made</p>
@@ -120,9 +121,9 @@ const [newLeadState, setNewLeadState] = useState("");
 
 <input
   className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
-  placeholder="Phone Number"
-  value={newLeadPhone}
-  onChange={(e) => setNewLeadPhone(e.target.value)}
+  placeholder="Email Address"
+  value={newLeadEmail}
+  onChange={(e) => setNewLeadEmail(e.target.value)}
 />
   
 
