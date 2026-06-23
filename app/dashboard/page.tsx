@@ -35,7 +35,9 @@ export default function Dashboard() {
   const appointmentCount = leads.filter(
     (lead) => lead.status === "appointment"
   ).length;
-
+const notInterestedCount = leads.filter(
+  (lead) => lead.status === "notInterested"
+).length;
   const updateLeadStatus = (status: string) => {
     const updatedLeads = [...leads];
 
@@ -65,7 +67,12 @@ export default function Dashboard() {
             {appointmentCount}
           </h2>
         </div>
-      </div>
+      <div className="bg-[#0F1F35] rounded-2xl p-5">
+  <p className="text-slate-400">Not Interested</p>
+  <h2 className="text-3xl font-bold text-yellow-300">
+    {notInterestedCount}
+  </h2>
+</div>
 
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-8 bg-[#0F1F35] rounded-2xl p-6">
@@ -169,15 +176,23 @@ export default function Dashboard() {
 
             <div>
               <strong>State:</strong> {leads[currentLead].state}
+            <div>
+  <strong>Status:</strong> {leads[currentLead].status}
+</div>
             </div>
           </div>
-
+<button
+  className="bg-purple-600 px-6 py-3 rounded-xl mt-4"
+  onClick={() => updateLeadStatus("appointment")}
+>
+  Appointment Set
+</button>
           <button
-            className="bg-purple-600 px-6 py-3 rounded-xl mt-6"
-            onClick={() => updateLeadStatus("appointment")}
-          >
-            Appointment Set
-          </button>
+  className="bg-yellow-600 px-6 py-3 rounded-xl mt-4 ml-2"
+  onClick={() => updateLeadStatus("notInterested")}
+>
+  Not Interested
+</button>
 
           <div className="flex gap-4 mt-6">
             <button
