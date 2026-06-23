@@ -38,7 +38,78 @@ export default function Dashboard() {
   <p className="text-slate-400">Do Not Call</p>
   <h2 className="text-3xl font-bold text-gray-400">0</h2>
 </div>      </div>
+<div className="grid grid-cols-12 gap-6 mt-8">
 
+  <div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
+
+    <h2 className="text-xl font-bold mb-4">
+      Recent Activity
+    </h2>
+
+    <div className="space-y-4 text-slate-300">
+      <p>No activity yet</p>
+    </div>
+
+  </div>
+
+  <div className="col-span-6 bg-[#0F1F35] rounded-2xl p-6">
+
+    <h2 className="text-2xl font-bold mb-6">
+      Lead Manager
+    </h2>
+
+    <div className="space-y-4">
+
+      <div>
+        <strong>Name:</strong> No Lead Loaded
+      </div>
+
+      <div>
+        <strong>Phone:</strong> ---
+      </div>
+
+      <div>
+        <strong>Email:</strong> ---
+      </div>
+
+      <div>
+        <strong>State:</strong> ---
+      </div>
+
+    </div>
+
+    <div className="flex gap-4 mt-8">
+
+      <button className="bg-green-600 px-6 py-3 rounded-xl">
+        Call
+      </button>
+
+      <button className="bg-blue-600 px-6 py-3 rounded-xl">
+        Text
+      </button>
+
+      <button className="bg-red-600 px-6 py-3 rounded-xl">
+        Do Not Call
+      </button>
+
+    </div>
+
+  </div>
+
+  <div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
+
+    <h2 className="text-xl font-bold mb-4">
+      Notes
+    </h2>
+
+    <textarea
+      className="w-full h-64 bg-[#081529] rounded-xl p-4"
+      placeholder="Type notes..."
+    />
+
+  </div>
+
+</div>
     </DashboardLayout>
   );
 }
