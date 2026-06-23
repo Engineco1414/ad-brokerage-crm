@@ -78,7 +78,7 @@ export default function Dashboard() {
     <div className="bg-[#0F1F35] rounded-2xl p-5">
   <p className="text-slate-400">Appointments</p>
   <h2 className="text-3xl font-bold text-purple-400">
-    {appointmentCount}
+    setAppointments(appointments + 1)
   </h2>
 </div>
 
@@ -244,7 +244,7 @@ export default function Dashboard() {
             </button>
 
           </div> 
-          <button
+         <button
   className="bg-purple-600 px-6 py-3 rounded-xl mt-4"
   onClick={() => updateLeadStatus("appointment")}
 >
