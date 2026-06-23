@@ -22,7 +22,7 @@ export default function Dashboard() {
   ]);
 
   const [currentLead, setCurrentLead] = useState(0);
-
+const [showAddLead, setShowAddLead] = useState(false);
   return (
     <DashboardLayout>
       <h1 className="text-4xl font-bold mb-8">
@@ -85,11 +85,51 @@ export default function Dashboard() {
               Lead Manager
             </h2>
 
-            <button className="bg-yellow-500 text-black px-4 py-2 rounded-xl font-bold">
-              + Add Lead
-            </button>
+            <button
+  className="bg-yellow-500 text-black px-4 py-2 rounded-xl font-bold"
+  onClick={() => setShowAddLead(!showAddLead)}
+>
+  + Add Lead
+</button>
 
           </div>
+
+{showAddLead && (
+
+  <div className="bg-[#081529] p-4 rounded-xl mb-6">
+
+    <input
+      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+      placeholder="Lead Name"
+    />
+
+    <input
+      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+      placeholder="Phone Number"
+    />
+
+    <input
+      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+      placeholder="Email Address"
+    />
+
+    <input
+      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+      placeholder="Age"
+    />
+
+    <input
+      className="w-full mb-3 p-3 rounded-lg bg-[#162B49]"
+      placeholder="State"
+    />
+
+    <button className="bg-green-600 px-5 py-3 rounded-xl">
+      Save Lead
+    </button>
+
+  </div>
+
+)}
 
           <div className="space-y-4">
 
