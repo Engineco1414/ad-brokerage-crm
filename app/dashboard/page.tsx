@@ -241,9 +241,20 @@ const notInterestedCount = leads.filter(
 
     <div>
       <p className="text-slate-400 text-sm">Status</p>
-      <span className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold">
-        {leads[currentLead].status}
-      </span>
+      
+      <span
+  className={`px-3 py-1 rounded-full font-bold text-sm ${
+    leads[currentLead].status === "appointment"
+      ? "bg-green-600"
+      : leads[currentLead].status === "notInterested"
+      ? "bg-yellow-500 text-black"
+      : leads[currentLead].status === "dnc"
+      ? "bg-red-600"
+      : "bg-slate-600"
+  }`}
+>
+  {leads[currentLead].status}
+</span>
     </div>
 
   </div>
