@@ -51,8 +51,15 @@ const notInterestedCount = leads.filter(
 
   return (
     <DashboardLayout>
-      <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
+<div className="flex items-center justify-between mb-8">
+  <h1 className="text-4xl font-bold">Dashboard</h1>
 
+  <input
+    type="text"
+    placeholder="Search leads..."
+    className="bg-[#0F1F35] text-white px-4 py-3 rounded-xl w-80 outline-none border border-slate-700 focus:border-yellow-500"
+  />
+</div>
 <div className="grid grid-cols-6 gap-6 mb-8">
         <div className="bg-[#0F1F35] rounded-2xl p-5">
           <p className="text-slate-400">Total Leads</p>
