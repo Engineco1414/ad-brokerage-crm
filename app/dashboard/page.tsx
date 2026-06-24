@@ -74,6 +74,8 @@ const notInterestedCount = leads.filter(
   </h2>
 </div>
 
+</div>
+
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-8 bg-[#0F1F35] rounded-2xl p-6">
           <div className="flex justify-between items-center mb-6">
