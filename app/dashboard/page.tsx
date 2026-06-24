@@ -84,8 +84,8 @@ const notInterestedCount = leads.filter(
 </div>
 
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-8 bg-[#0F1F35] rounded-2xl p-6">
-          <div className="flex justify-between items-center mb-6">
+<div className="col-span-9 bg-[#0F1F35] rounded-2xl p-6">
+            <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold">Lead Manager</h2>
 
             <button
@@ -234,8 +234,8 @@ const notInterestedCount = leads.filter(
           </div>
         </div>
 
-        <div className="col-span-4 bg-[#0F1F35] rounded-2xl p-6">
-          <h2 className="text-xl font-bold mb-4">Notes</h2>
+<div className="col-span-9 bg-[#0F1F35] rounded-2xl p-6">
+  <h2 className="text-xl font-bold mb-4">Notes</h2>
 
           <textarea
             className="w-full h-64 bg-[#081529] rounded-xl p-4"
