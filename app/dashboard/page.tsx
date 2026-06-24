@@ -67,7 +67,12 @@ const notInterestedCount = leads.filter(
             {leads.length}
           </h2>
         </div>
-
+<div className="bg-[#0F1F35] rounded-2xl p-5">
+  <p className="text-slate-400">Calls Made</p>
+  <h2 className="text-3xl font-bold text-green-400">
+    0
+  </h2>
+</div>
         <div className="bg-[#0F1F35] rounded-2xl p-5">
           <p className="text-slate-400">Appointments</p>
           <h2 className="text-3xl font-bold text-purple-400">
@@ -84,17 +89,31 @@ const notInterestedCount = leads.filter(
 </div>
 
       <div className="grid grid-cols-12 gap-6">
-<div className="col-span-9 bg-[#0F1F35] rounded-2xl p-6">
-            <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Lead Manager</h2>
+        <div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
+  <h2 className="text-xl font-bold mb-4">
+    Recent Activity
+  </h2>
 
-            <button
-              className="bg-yellow-500 text-black px-4 py-2 rounded-xl font-bold"
-              onClick={() => setShowAddLead(!showAddLead)}
-            >
-              + Add Lead
-            </button>
-          </div>
+  <div className="space-y-3 text-slate-400">
+    <p>No activity yet.</p>
+  </div>
+</div>
+<div className="col-span-9 bg-[#0F1F35] rounded-2xl p-6">
+           <div className="flex items-center justify-between mb-6">
+  <div>
+    <h2 className="text-2xl font-bold">Lead Manager</h2>
+    <p className="text-slate-400 text-sm">
+      View and manage your current lead.
+    </p>
+  </div>
+
+  <button
+    className="bg-yellow-500 hover:bg-yellow-400 text-black px-5 py-3 rounded-xl font-bold transition"
+    onClick={() => setShowAddLead(!showAddLead)}
+  >
+    + Add Lead
+  </button>
+</div>
 
           {showAddLead && (
             <div className="bg-[#081529] p-4 rounded-xl mb-6">
