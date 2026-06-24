@@ -187,11 +187,13 @@ const notInterestedCount = leads.filter(
   <strong>State:</strong> {leads[currentLead].state}
 </div>
 
+ <div>
 <div>
   <strong>Status:</strong> {leads[currentLead].status}
 </div>
             </div>
           </div>
+
 <button
   className="bg-purple-600 px-6 py-3 rounded-xl mt-4"
   onClick={() => updateLeadStatus("appointment")}
@@ -234,9 +236,8 @@ const notInterestedCount = leads.filter(
           </div>
         </div>
 
-<div className="col-span-9 bg-[#0F1F35] rounded-2xl p-6">
+<div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
   <h2 className="text-xl font-bold mb-4">Notes</h2>
-
           <textarea
             className="w-full h-64 bg-[#081529] rounded-xl p-4"
             placeholder="Type notes..."
