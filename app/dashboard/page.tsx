@@ -166,8 +166,8 @@ const notInterestedCount = leads.filter(
             </div>
           )}
 
-          <div className="space-y-4">
-            <div>
+<div className="bg-[#081529] border border-slate-700 rounded-2xl p-6 space-y-4">         
+   <div>
               <strong>Name:</strong> {leads[currentLead].name}
             </div>
 
