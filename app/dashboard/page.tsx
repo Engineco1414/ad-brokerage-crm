@@ -177,8 +177,10 @@ const notInterestedCount = leads.filter(
             </div>
 
             <div>
-              <strong>State:</strong> {leads[currentLead].state}
-            <div>
+  <strong>State:</strong> {leads[currentLead].state}
+</div>
+
+<div>
   <strong>Status:</strong> {leads[currentLead].status}
 </div>
             </div>
