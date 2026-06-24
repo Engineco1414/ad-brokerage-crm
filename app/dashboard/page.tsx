@@ -53,7 +53,7 @@ const notInterestedCount = leads.filter(
     <DashboardLayout>
       <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
 
-      <div className="grid grid-cols-6 gap-4 mb-8">
+<div className="grid grid-cols-6 gap-6 mb-8">
         <div className="bg-[#0F1F35] rounded-2xl p-5">
           <p className="text-slate-400">Total Leads</p>
           <h2 className="text-3xl font-bold text-yellow-400">
