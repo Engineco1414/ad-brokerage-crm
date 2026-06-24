@@ -85,7 +85,18 @@ const notInterestedCount = leads.filter(
     {notInterestedCount}
   </h2>
 </div>
-
+<div className="bg-[#0F1F35] rounded-2xl p-5">
+  <p className="text-slate-400">Did Not Answer</p>
+  <h2 className="text-3xl font-bold text-red-400">
+    0
+  </h2>
+</div>
+<div className="bg-[#0F1F35] rounded-2xl p-5">
+  <p className="text-slate-400">Do Not Call</p>
+  <h2 className="text-3xl font-bold text-gray-400">
+    0
+  </h2>
+</div>
 </div>
 
       <div className="grid grid-cols-12 gap-6">
@@ -185,33 +196,59 @@ const notInterestedCount = leads.filter(
             </div>
           )}
 
-<div className="bg-[#081529] border border-slate-700 rounded-2xl p-6 space-y-4">         
-   <div>
-              <strong>Name:</strong> {leads[currentLead].name}
-            </div>
+<div className="bg-[#081529] border border-slate-700 rounded-2xl p-6">
 
-            <div>
-              <strong>Age:</strong> {leads[currentLead].age}
-            </div>
+  <h3 className="text-xl font-bold mb-6">
+    Client Information
+  </h3>
 
-            <div>
-              <strong>Phone:</strong> {leads[currentLead].phone}
-            </div>
+  <div className="grid grid-cols-2 gap-6">
 
-            <div>
-              <strong>Email:</strong> {leads[currentLead].email}
-            </div>
+    <div>
+      <p className="text-slate-400 text-sm">Full Name</p>
+      <p className="text-lg font-semibold">
+        {leads[currentLead].name}
+      </p>
+    </div>
 
-            <div>
-  <strong>State:</strong> {leads[currentLead].state}
+    <div>
+      <p className="text-slate-400 text-sm">Age</p>
+      <p className="text-lg font-semibold">
+        {leads[currentLead].age}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-slate-400 text-sm">Phone Number</p>
+      <p className="text-lg font-semibold">
+        {leads[currentLead].phone}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-slate-400 text-sm">Email Address</p>
+      <p className="text-lg font-semibold">
+        {leads[currentLead].email}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-slate-400 text-sm">State</p>
+      <p className="text-lg font-semibold">
+        {leads[currentLead].state}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-slate-400 text-sm">Status</p>
+      <span className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold">
+        {leads[currentLead].status}
+      </span>
+    </div>
+
+  </div>
+
 </div>
-
- <div>
-<div>
-  <strong>Status:</strong> {leads[currentLead].status}
-</div>
-            </div>
-          </div>
 
 <button
   className="bg-purple-600 px-6 py-3 rounded-xl mt-4"
