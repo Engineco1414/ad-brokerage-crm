@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
+import DashboardStats from "../../components/DashboardStats";
 export default function Dashboard() {
   const [leads, setLeads] = useState([
     {
@@ -21,7 +22,7 @@ export default function Dashboard() {
       status: "new",
     },
   ]);
-
+  const [search, setSearch] = useState("");
   const [currentLead, setCurrentLead] = useState(0);
   const [showAddLead, setShowAddLead] = useState(false);
   const [activity, setActivity] = useState<string[]>([]);
@@ -37,6 +38,12 @@ export default function Dashboard() {
 const notInterestedCount = leads.filter(
   (lead) => lead.status === "notInterested"
 ).length;
+const filteredLeads = leads.filter((lead) =>
+  lead.name.toLowerCase().includes(search.toLowerCase()) ||
+  lead.phone.includes(search) ||
+  lead.email.toLowerCase().includes(search.toLowerCase()) ||
+  lead.state.toLowerCase().includes(search.toLowerCase())
+);
 const updateLeadStatus = (status: string) => {
   const updatedLeads = [...leads];
 
@@ -54,57 +61,30 @@ const updateLeadStatus = (status: string) => {
 };
 
   return (
-    <DashboardLayout>
+<DashboardLayout>
 <div className="flex items-center justify-between mb-8">
   <h1 className="text-4xl font-bold">Dashboard</h1>
 
   <input
     type="text"
     placeholder="Search leads..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
     className="bg-[#0F1F35] text-white px-4 py-3 rounded-xl w-80 outline-none border border-slate-700 focus:border-yellow-500"
   />
 </div>
-<div className="grid grid-cols-6 gap-6 mb-8">
-        <div className="bg-[#0F1F35] rounded-2xl p-5">
-          <p className="text-slate-400">Total Leads</p>
-          <h2 className="text-3xl font-bold text-yellow-400">
-            {leads.length}
-          </h2>
-        </div>
-<div className="bg-[#0F1F35] rounded-2xl p-5">
-  <p className="text-slate-400">Calls Made</p>
-  <h2 className="text-3xl font-bold text-green-400">
-    0
-  </h2>
-</div>
-        <div className="bg-[#0F1F35] rounded-2xl p-5">
-          <p className="text-slate-400">Appointments</p>
-          <h2 className="text-3xl font-bold text-purple-400">
-            {appointmentCount}
-          </h2>
-        </div>
-      <div className="bg-[#0F1F35] rounded-2xl p-5">
-  <p className="text-slate-400">Not Interested</p>
-  <h2 className="text-3xl font-bold text-yellow-300">
-    {notInterestedCount}
-  </h2>
-</div>
-<div className="bg-[#0F1F35] rounded-2xl p-5">
-  <p className="text-slate-400">Did Not Answer</p>
-  <h2 className="text-3xl font-bold text-red-400">
-    0
-  </h2>
-</div>
-<div className="bg-[#0F1F35] rounded-2xl p-5">
-  <p className="text-slate-400">Do Not Call</p>
-  <h2 className="text-3xl font-bold text-gray-400">
-    0
-  </h2>
-</div>
-</div>
+<DashboardStats
+  totalLeads={leads.length}
+  callsMade={0}
+  appointments={appointmentCount}
+  notInterested={notInterestedCount}
+  didNotAnswer={0}
+  doNotCall={0}
+/>
 
 <div className="grid grid-cols-12 gap-6 h-[calc(100vh-250px)]">
-<div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
+
+  <div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
     <h2 className="text-xl font-bold mb-4">
     Recent Activity
   </h2>
@@ -132,25 +112,39 @@ const updateLeadStatus = (status: string) => {
 
   <div className="space-y-3 overflow-y-auto flex-1">
 
-    {leads.map((lead, index) => (
-
+{filteredLeads.map((lead, index) => (
       <button
         key={index}
         onClick={() => setCurrentLead(index)}
-        className={`w-full text-left p-4 rounded-xl transition ${
-          currentLead === index
-            ? "bg-yellow-500 text-black"
-            : "bg-[#081529] hover:bg-[#162B49]"
-        }`}
+        className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 ${
+  currentLead === index
+    ? "bg-[#1A2C4A] border-yellow-500 shadow-lg"
+    : "bg-[#081529] border-slate-700 hover:border-slate-500 hover:bg-[#10203A]"
+}`}
       >
 
-        <p className="font-semibold">
-          {lead.name}
-        </p>
+        <div className="flex items-center gap-3">
 
-        <p className="text-sm text-slate-400">
-          {lead.phone}
-        </p>
+  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold">
+    {lead.name
+      .split(" ")
+      .map(n => n[0])
+      .join("")}
+  </div>
+
+  <div>
+
+    <p className="font-semibold">
+      {lead.name}
+    </p>
+
+    <p className="text-xs text-slate-400">
+      {lead.state}
+    </p>
+
+  </div>
+
+</div>
 
       </button>
 
@@ -286,8 +280,8 @@ const updateLeadStatus = (status: string) => {
 
 </div>
 
-<div className="grid grid-cols-2 gap-x-10 gap-y-8">
-    <div>
+<div className="space-y-5 mt-6">
+        <div>
       <p className="text-slate-400 text-sm">Full Name</p>
       <p className="text-lg font-semibold">
         {leads[currentLead].name}
@@ -301,12 +295,24 @@ const updateLeadStatus = (status: string) => {
       </p>
     </div>
 
+<div className="flex items-center justify-between bg-[#12233D] border border-slate-700 hover:border-yellow-500 hover:bg-[#18304F] rounded-2xl px-6 py-5 transition-all duration-200">
     <div>
-      <p className="text-slate-400 text-sm">Phone Number</p>
-      <p className="text-lg font-semibold">
-        {leads[currentLead].phone}
-      </p>
-    </div>
+    <p className="text-slate-400 text-sm">
+      Phone Number
+    </p>
+
+    <p className="text-lg font-semibold">
+      {leads[currentLead].phone}
+    </p>
+  </div>
+
+<button
+  className="bg-green-600 hover:bg-green-500 px-5 py-2 rounded-xl font-semibold transition"
+>
+  Call
+</button>
+
+</div>
 
     <div>
       <p className="text-slate-400 text-sm">Email Address</p>
