@@ -1,26 +1,39 @@
 "use client";
-
+import LeadManager from "../../components/LeadManager";
 import { useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
 import DashboardStats from "../../components/DashboardStats";
+import LeadList from "../../components/LeadList";
 export default function Dashboard() {
   const [leads, setLeads] = useState([
     {
-      name: "John Smith",
-      age: 67,
-      phone: "636-555-1234",
-      email: "johnsmith@email.com",
-      state: "Missouri",
-      status: "new",
-    },
+  name: "John Smith",
+  age: 67,
+  phone: "636-555-1234",
+  email: "johnsmith@email.com",
+  state: "Missouri",
+  status: "new",
+
+  carrier: "Mutual of Omaha",
+  policyType: "Final Expense",
+  faceAmount: "$25,000",
+  monthlyPremium: "$68.42",
+  beneficiary: "Jane Smith",
+},
     {
-      name: "Mary Johnson",
-      age: 59,
-      phone: "314-555-9876",
-      email: "mary@email.com",
-      state: "Illinois",
-      status: "new",
-    },
+  name: "Mary Johnson",
+  age: 59,
+  phone: "314-555-9876",
+  email: "mary@email.com",
+  state: "Illinois",
+  status: "new",
+
+  carrier: "Foresters",
+  policyType: "Term Life",
+  faceAmount: "$250,000",
+  monthlyPremium: "$42.15",
+  beneficiary: "David Johnson",
+},
   ]);
   const [search, setSearch] = useState("");
   const [currentLead, setCurrentLead] = useState(0);
@@ -38,14 +51,14 @@ export default function Dashboard() {
 const notInterestedCount = leads.filter(
   (lead) => lead.status === "notInterested"
 ).length;
-const filteredLeads = leads.filter((lead) =>
-  lead.name.toLowerCase().includes(search.toLowerCase()) ||
-  lead.phone.includes(search) ||
-  lead.email.toLowerCase().includes(search.toLowerCase()) ||
-  lead.state.toLowerCase().includes(search.toLowerCase())
-);
+
+
+const filteredLeads = leads;
+
+
 const updateLeadStatus = (status: string) => {
   const updatedLeads = [...leads];
+
 
   updatedLeads[currentLead] = {
     ...updatedLeads[currentLead],
@@ -153,6 +166,7 @@ const updateLeadStatus = (status: string) => {
   </div>
 
 </div>
+<LeadManager />
 <div className="col-span-6 bg-[#0F1F35] rounded-2xl p-6">
              <div className="flex items-center justify-between mb-6">
   <div>
@@ -214,14 +228,20 @@ const updateLeadStatus = (status: string) => {
 
                   setLeads([
                     ...leads,
-                    {
-                      name: newLeadName,
-                      age: Number(newLeadAge) || 0,
-                      phone: newLeadPhone,
-                      email: newLeadEmail,
-                      state: newLeadState,
-                      status: "new",
-                    },
+                   {
+  name: newLeadName,
+  age: Number(newLeadAge) || 0,
+  phone: newLeadPhone,
+  email: newLeadEmail,
+  state: newLeadState,
+  status: "new",
+
+  carrier: "",
+  policyType: "",
+  faceAmount: "",
+  monthlyPremium: "",
+  beneficiary: "",
+}
                   ]);
 
                   setCurrentLead(leads.length);
@@ -306,11 +326,23 @@ const updateLeadStatus = (status: string) => {
     </p>
   </div>
 
-<button
-  className="bg-green-600 hover:bg-green-500 px-5 py-2 rounded-xl font-semibold transition"
->
-  Call
-</button>
+<div className="flex gap-3">
+
+  <a
+    href={`tel:${leads[currentLead].phone}`}
+    className="bg-green-600 hover:bg-green-500 px-5 py-2 rounded-xl font-semibold transition"
+  >
+    📞 Call
+  </a>
+
+  <a
+    href={`sms:${leads[currentLead].phone}`}
+    className="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-xl font-semibold transition"
+  >
+    💬 Text
+  </a>
+
+</div>
 
 </div>
 
@@ -402,13 +434,16 @@ const updateLeadStatus = (status: string) => {
           </div>
         </div>
 
-<div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6 flex flex-col">
-    <h2 className="text-xl font-bold mb-4">Notes</h2>
-          <textarea
-            className="w-full flex-1 bg-[#081529] rounded-xl p-4 resize-none"
-            placeholder="Type notes..."
-          />
-        </div>
+
+    <div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6 flex flex-col">
+  <h2 className="text-xl font-bold mb-4">Notes</h2>
+
+  <textarea
+    className="w-full flex-1 bg-[#081529] rounded-xl p-4 resize-none"
+    placeholder="Type notes..."
+  />
+</div>
+      
       </div>
     </DashboardLayout>
   );
