@@ -104,14 +104,14 @@ const updateLeadStatus = (status: string) => {
 </div>
 </div>
 
-      <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
-  <h2 className="text-xl font-bold mb-4">
+<div className="grid grid-cols-12 gap-6 h-[calc(100vh-250px)]">
+<div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
+    <h2 className="text-xl font-bold mb-4">
     Recent Activity
   </h2>
 
-  <div className="space-y-3">
-  {activity.length === 0 ? (
+<div className="space-y-3 overflow-y-auto flex-1 pr-2">
+    {activity.length === 0 ? (
     <p className="text-slate-400">No activity yet.</p>
   ) : (
     activity.map((item, index) => (
@@ -319,10 +319,10 @@ const updateLeadStatus = (status: string) => {
           </div>
         </div>
 
-<div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6">
-  <h2 className="text-xl font-bold mb-4">Notes</h2>
+<div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6 flex flex-col">
+    <h2 className="text-xl font-bold mb-4">Notes</h2>
           <textarea
-            className="w-full h-64 bg-[#081529] rounded-xl p-4"
+            className="w-full flex-1 bg-[#081529] rounded-xl p-4 resize-none"
             placeholder="Type notes..."
           />
         </div>
