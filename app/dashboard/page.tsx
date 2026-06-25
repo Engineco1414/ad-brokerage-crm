@@ -25,7 +25,7 @@ export default function Dashboard() {
 
   const [currentLead, setCurrentLead] = useState(0);
   const [showAddLead, setShowAddLead] = useState(false);
-
+  const [activity, setActivity] = useState<string[]>([]);
   const [newLeadName, setNewLeadName] = useState("");
   const [newLeadPhone, setNewLeadPhone] = useState("");
   const [newLeadEmail, setNewLeadEmail] = useState("");
@@ -38,16 +38,21 @@ export default function Dashboard() {
 const notInterestedCount = leads.filter(
   (lead) => lead.status === "notInterested"
 ).length;
-  const updateLeadStatus = (status: string) => {
-    const updatedLeads = [...leads];
+const updateLeadStatus = (status: string) => {
+  const updatedLeads = [...leads];
 
-    updatedLeads[currentLead] = {
-      ...updatedLeads[currentLead],
-      status,
-    };
-
-    setLeads(updatedLeads);
+  updatedLeads[currentLead] = {
+    ...updatedLeads[currentLead],
+    status,
   };
+
+  setLeads(updatedLeads);
+
+  setActivity([
+    `${updatedLeads[currentLead].name} marked as ${status}`,
+    ...activity,
+  ]);
+};
 
   return (
     <DashboardLayout>
@@ -105,9 +110,20 @@ const notInterestedCount = leads.filter(
     Recent Activity
   </h2>
 
-  <div className="space-y-3 text-slate-400">
-    <p>No activity yet.</p>
-  </div>
+  <div className="space-y-3">
+  {activity.length === 0 ? (
+    <p className="text-slate-400">No activity yet.</p>
+  ) : (
+    activity.map((item, index) => (
+      <div
+        key={index}
+        className="bg-[#081529] rounded-xl p-3 text-sm"
+      >
+        {item}
+      </div>
+    ))
+  )}
+</div>
 </div>
 <div className="col-span-9 bg-[#0F1F35] rounded-2xl p-6">
            <div className="flex items-center justify-between mb-6">
