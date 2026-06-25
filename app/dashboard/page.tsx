@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import DashboardLayout from "../../components/DashboardLayout";
-
 export default function Dashboard() {
   const [leads, setLeads] = useState([
     {
@@ -125,8 +124,43 @@ const updateLeadStatus = (status: string) => {
   )}
 </div>
 </div>
-<div className="col-span-9 bg-[#0F1F35] rounded-2xl p-6">
-           <div className="flex items-center justify-between mb-6">
+<div className="col-span-3 bg-[#0F1F35] rounded-2xl p-6 flex flex-col">
+
+  <h2 className="text-xl font-bold mb-4">
+    Leads
+  </h2>
+
+  <div className="space-y-3 overflow-y-auto flex-1">
+
+    {leads.map((lead, index) => (
+
+      <button
+        key={index}
+        onClick={() => setCurrentLead(index)}
+        className={`w-full text-left p-4 rounded-xl transition ${
+          currentLead === index
+            ? "bg-yellow-500 text-black"
+            : "bg-[#081529] hover:bg-[#162B49]"
+        }`}
+      >
+
+        <p className="font-semibold">
+          {lead.name}
+        </p>
+
+        <p className="text-sm text-slate-400">
+          {lead.phone}
+        </p>
+
+      </button>
+
+    ))}
+
+  </div>
+
+</div>
+<div className="col-span-6 bg-[#0F1F35] rounded-2xl p-6">
+             <div className="flex items-center justify-between mb-6">
   <div>
     <h2 className="text-2xl font-bold">Lead Manager</h2>
     <p className="text-slate-400 text-sm">
@@ -212,14 +246,47 @@ const updateLeadStatus = (status: string) => {
             </div>
           )}
 
-<div className="bg-[#081529] border border-slate-700 rounded-2xl p-6">
+<div className="bg-[#081529] border border-slate-700 rounded-3xl p-8 shadow-lg">
+<div className="flex items-center justify-between mb-8">
 
-  <h3 className="text-xl font-bold mb-6">
-    Client Information
-  </h3>
+  <div className="flex items-center gap-5">
 
-  <div className="grid grid-cols-2 gap-6">
+  <div className="w-16 h-16 rounded-full bg-blue-600 flex items-center justify-center text-2xl font-bold">
+    {leads[currentLead].name
+      .split(" ")
+      .map(n => n[0])
+      .join("")}
+  </div>
 
+  <div>
+    <h3 className="text-3xl font-bold">
+      {leads[currentLead].name}
+    </h3>
+
+    <p className="text-slate-400">
+      Current Client
+    </p>
+  </div>
+
+</div>
+
+  <span
+    className={`px-4 py-2 rounded-full font-bold ${
+      leads[currentLead].status === "appointment"
+        ? "bg-green-600"
+        : leads[currentLead].status === "notInterested"
+        ? "bg-yellow-500 text-black"
+        : leads[currentLead].status === "dnc"
+        ? "bg-red-600"
+        : "bg-slate-600"
+    }`}
+  >
+    {leads[currentLead].status.toUpperCase()}
+  </span>
+
+</div>
+
+<div className="grid grid-cols-2 gap-x-10 gap-y-8">
     <div>
       <p className="text-slate-400 text-sm">Full Name</p>
       <p className="text-lg font-semibold">
@@ -259,17 +326,27 @@ const updateLeadStatus = (status: string) => {
       <p className="text-slate-400 text-sm">Status</p>
       
       <span
-  className={`px-3 py-1 rounded-full font-bold text-sm ${
+  className={`px-4 py-2 rounded-lg text-sm font-semibold ${
     leads[currentLead].status === "appointment"
-      ? "bg-green-600"
+      ? "bg-green-900 text-green-300"
       : leads[currentLead].status === "notInterested"
-      ? "bg-yellow-500 text-black"
+      ? "bg-yellow-900 text-yellow-300"
+      : leads[currentLead].status === "dna"
+      ? "bg-red-900 text-red-300"
       : leads[currentLead].status === "dnc"
-      ? "bg-red-600"
-      : "bg-slate-600"
+      ? "bg-red-900 text-red-300"
+      : "bg-green-900 text-green-300"
   }`}
 >
-  {leads[currentLead].status}
+  {leads[currentLead].status === "appointment"
+    ? "Appointment Set"
+    : leads[currentLead].status === "notInterested"
+    ? "Not Interested"
+    : leads[currentLead].status === "dna"
+    ? "Did Not Answer"
+    : leads[currentLead].status === "dnc"
+    ? "Do Not Call"
+    : "New Lead"}
 </span>
     </div>
 
